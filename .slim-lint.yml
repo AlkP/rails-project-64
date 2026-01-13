@@ -1,0 +1,17 @@
+
+exclude:
+  - vendor/*
+  - node_modules/*
+
+linters:
+  LineLength:
+    enabled: true
+    max: 120
+  TrailingWhitespace:
+    enabled: true
+  TrailingBlankLines:
+    enabled: true
+  RuboCop:
+    enabled: true
+    ignored_cops:
+      - 'Layout/LineLength'

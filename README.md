@@ -1,5 +1,10 @@
-### Hexlet tests and linter status:
 [![Actions Status](https://github.com/AlkP/rails-project-64/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/AlkP/rails-project-64/actions)
+[![CI Status](https://github.com/AlkP/rails-project-64/actions/workflows/ci.yml/badge.svg)](https://github.com/AlkP/rails-project-64/actions/workflows/CI.yml)
+
+## Deployed
+https://rails-project-64-nwrf.onrender.com
+
+---
 
 ## Requirements
 
@@ -20,8 +25,8 @@ make setup
 make start
 ```
 
-## Deploy
-
-https://rails-project-64-nwrf.onrender.com
-
 ---
+
+## error messages
+#### Sentry.capture_message("test message")
+https://sentry.io/

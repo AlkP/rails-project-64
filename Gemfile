@@ -14,6 +14,8 @@ gem 'kamal', require: false
 gem 'propshaft'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 8.1.1'
+gem 'sentry-rails'
+gem 'sentry-ruby'
 gem 'slim-rails'
 gem 'solid_cable'
 gem 'solid_cache'
@@ -31,6 +33,7 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'bundler-audit', require: false
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
+  gem 'dotenv-rails'
   gem 'rubocop-rails-omakase', require: false
   gem 'sqlite3', '>= 2.1'
 end

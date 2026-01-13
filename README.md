@@ -10,7 +10,7 @@ https://rails-project-64-nwrf.onrender.com
 
 * Ruby 3.4.4
 * Node.js v20.19.6
-* npm
+* yarn
 * SQLite for local
 
 ## Setup

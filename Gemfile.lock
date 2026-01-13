@@ -118,6 +118,8 @@ GEM
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
+    faker (3.5.3)
+      i18n (>= 1.8.11, < 2)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
     ffi (1.17.2-arm-linux-gnu)
@@ -176,6 +178,9 @@ GEM
     mini_mime (1.1.5)
     minitest (6.0.0)
       prism (~> 1.5)
+    minitest-power_assert (0.3.1)
+      minitest
+      power_assert (>= 1.1)
     msgpack (1.8.0)
     net-imap (0.6.2)
       date
@@ -217,6 +222,7 @@ GEM
     pg (1.6.2-arm64-darwin)
     pg (1.6.2-x86_64-linux)
     pg (1.6.2-x86_64-linux-musl)
+    power_assert (3.0.1)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -426,10 +432,12 @@ DEPENDENCIES
   cssbundling-rails
   debug
   dotenv-rails
+  faker
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
   kamal
+  minitest-power_assert
   pg
   propshaft
   puma (>= 5.0)

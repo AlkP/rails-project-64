@@ -34,6 +34,8 @@ group :development, :test do
   gem 'bundler-audit', require: false
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
   gem 'dotenv-rails'
+  gem 'faker'
+  gem 'minitest-power_assert'
   gem 'rubocop-rails-omakase', require: false
   gem 'slim_lint'
   gem 'sqlite3', '>= 2.1'

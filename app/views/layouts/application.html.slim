@@ -1,5 +1,8 @@
 doctype html
 html
+
+  = render 'layouts/nav'
+
   head
     title
       = content_for(:title) || 'Rails Project 64'
@@ -9,19 +12,9 @@ html
     meta[name='mobile-web-app-capable' content='yes']
     = csrf_meta_tags
     = csp_meta_tag
-    nav
-      - if user_signed_in?
-        |  привет,&nbsp;
-        = current_user.email
-        |  |&nbsp;
-        = link_to 'Главная', root_path
-        |  |&nbsp;
-        = link_to 'Выйти', destroy_user_session_path, data: { turbo_method: :delete }
-      - else
-        = link_to 'Зарегестрироваться', new_user_registration_path
-        |  |&nbsp;
-        = link_to 'Войти', new_user_session_path
+
     = yield :head
+
     / # Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!)
     / #= tag.link rel: 'manifest', href: pwa_manifest_path(format: :json)
     link[rel='icon' href='/icon.png' type='image/png']
@@ -31,11 +24,13 @@ html
     = stylesheet_link_tag :app, 'data-turbo-track': 'reload'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload', type: 'module'
 
-    - meta_tags = Sentry.get_trace_propagation_meta
-    = meta_tags.presence
+    = # rubocop:disable Rails/OutputSafety
+    = Sentry.get_trace_propagation_meta.html_safe
+    = # rubocop:enable Rails/OutputSafety
 
   body
-    .container.mt-5
-      .row.justify-content-center
-        .col-md-8.col-lg-6
+    .container
+      .row.justify-content-start
+        .col-4
+        .col-4
           = yield

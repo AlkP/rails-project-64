@@ -1,0 +1,41 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container-fluid
+    a.navbar-brand[href='/']
+      | AlkP_railsProject64
+    button.navbar-toggler[type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent'
+      aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation']
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link.active[aria-current='page' href='/']
+            | Главная
+        - if current_user&.admin?
+          li.nav-item
+            a.nav-link[href="#{users_path}"]
+              | Пользователи
+        li.nav-item
+          a.nav-link.disabled
+            | на будущее
+      form.d-flex
+        nav-item.dropdown
+          a#userDropdown.nav-link.dropdown-toggle[href='#' data-bs-toggle='dropdown']
+            = user_signed_in? ? current_user.greeting : 'Пользовательское меню'
+
+          ul.dropdown-menu.dropdown-menu-end[aria-labelledby='userDropdown']
+            - if user_signed_in?
+              li
+                a.dropdown-item[href='#']
+                  | Профиль
+              li
+                hr.dropdown-divider
+              li
+                a.dropdown-item[data-turbo-method='delete' href="#{destroy_user_session_path}"]
+                  | Выйти
+            - else
+              li
+                a.dropdown-item[href="#{new_user_session_path}"]
+                  | Войти
+              li
+                a.dropdown-item[href="#{new_user_registration_path}"]
+                  | Зарегестрироваться

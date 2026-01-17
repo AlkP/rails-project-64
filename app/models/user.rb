@@ -5,4 +5,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def greeting
+    "Привет, #{name? ? name : email}"
+  end
+
+  def admin?
+    email.eql? 'apasenko@ya.ru'
+  end
 end

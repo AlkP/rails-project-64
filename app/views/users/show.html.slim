@@ -1,0 +1,21 @@
+h1
+  | Профиль пользователя:
+  = @user.name
+.user-profile
+  .user-info
+    p
+      strong
+        | Имя:
+      = @user.name
+    p
+      strong
+        | Email:
+      = @user.email
+    p
+      strong
+        | Дата регистрации:
+      = @user.created_at.strftime('%d.%m.%Y %H:%M')
+/ Ссылки для навигации
+.actions
+  = link_to 'Редактировать', edit_user_path(@user), class: 'btn btn-primary'
+  = link_to 'Все пользователи', users_path, class: 'btn btn-secondary'

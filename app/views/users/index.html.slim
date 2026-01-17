@@ -1,0 +1,13 @@
+h1
+  | Список пользователей
+- if @users.any?
+  ul
+    - @users.each do |users|
+      li
+        strong
+          = users.email
+        = link_to 'Посмотреть', users
+- else
+  p
+    | Пользователей пока нет.
+= link_to 'Создать нового пользователя', new_user_registration_path

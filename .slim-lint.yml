@@ -11,7 +11,3 @@ linters:
     enabled: true
   TrailingBlankLines:
     enabled: true
-  RuboCop:
-    enabled: true
-    ignored_cops:
-      - 'Layout/LineLength'

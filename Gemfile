@@ -7,6 +7,7 @@ source 'https://rubygems.org'
 
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
+gem 'devise', '~> 4.9'
 gem 'image_processing', '~> 1.2'
 gem 'jbuilder'
 gem 'jsbundling-rails'
@@ -42,6 +43,9 @@ group :development, :test do
 end
 
 group :development do
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'web-console'
 end
 

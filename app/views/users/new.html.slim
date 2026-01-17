@@ -1,0 +1,39 @@
+h1.mb-4.text-center
+  | Создать нового пользователя
+/ Ошибки валидации (Bootstrap alert)
+- if @user.errors.any?
+  .alert.alert-danger.alert-dismissible.fade.show[role='alert']
+    strong
+      = pluralize(@user.errors.count, 'ошибка')
+      |  препятствуют сохранению:
+    ul.mb-0.mt-2
+      - @user.errors.full_messages.each do |message|
+        li
+          = message
+    button.btn-close[type='button' data-bs-dismiss='alert']
+/ Форма с Bootstrap-стилями
+= form_with model: @user, local: true, html: { class: 'needs-validation', novalidate: true } do |form|
+  / Имя
+  .mb-3
+    = form.label :name, class: 'form-label'
+    = form.text_field :name, class: 'form-control', required: true, placeholder: 'Введите имя'
+  / Email
+  .mb-3
+    = form.label :email, class: 'form-label'
+    = form.email_field :email, class: 'form-control', required: true, placeholder: 'user@example.com'
+  / Пароль
+  .mb-3
+    = form.label :password, class: 'form-label'
+    = form.password_field :password, class: 'form-control',
+            required: true, minlength: 6, placeholder: 'Минимум 6 символов'
+  / Подтверждение пароля
+  .mb-3
+    = form.label :password_confirmation, 'Подтверждение пароля', class: 'form-label'
+    = form.password_field :password_confirmation, class: 'form-control',
+            required: true, placeholder: 'Повторите пароль'
+  / Кнопка отправки
+  .d-grid.gap-2.mt-4
+    = form.submit 'Создать пользователя', class: 'btn btn-primary btn-lg'
+/ Ссылка назад
+.text-center.mt-3
+  = link_to '← Вернуться к списку', users_path, class: 'text-muted'

@@ -1,0 +1,3 @@
+services:
+  - type: web
+    releaseCommand: rails db:migrate  # выполняется при деплое

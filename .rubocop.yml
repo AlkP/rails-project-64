@@ -52,3 +52,6 @@ Style/Documentation:
 
 Style/IfUnlessModifier:
   Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false

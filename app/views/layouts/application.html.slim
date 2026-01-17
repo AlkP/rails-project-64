@@ -24,9 +24,7 @@ html
     = stylesheet_link_tag :app, 'data-turbo-track': 'reload'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload', type: 'module'
 
-    = # rubocop:disable Rails/OutputSafety
     = Sentry.get_trace_propagation_meta.html_safe
-    = # rubocop:enable Rails/OutputSafety
 
   body
     .container

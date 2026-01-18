@@ -25,6 +25,10 @@ db-prepare:
 	bin/rails db:reset
 	bin/rails db:fixtures:load
 
+seed:
+	bin/rails db:prepare
+	bin/rails db:seed
+
 check: test lint
 
 test:

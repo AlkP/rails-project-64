@@ -40,6 +40,7 @@ plugins:
   - rubocop-performance
   - rubocop-rails
   - rubocop-capybara
+  - rubocop-minitest
 
 Style/AsciiComments:
   Enabled: false

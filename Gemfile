@@ -38,15 +38,15 @@ group :development, :test do
   gem 'faker'
   gem 'minitest', '~> 5.18'
   gem 'minitest-power_assert', '~> 0.3.1'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rubocop-rails-omakase', require: false
   gem 'slim_lint'
   gem 'sqlite3', '>= 2.1'
 end
 
 group :development do
-  gem 'pry'
-  gem 'pry-byebug'
-  gem 'pry-rails'
   gem 'web-console'
 end
 

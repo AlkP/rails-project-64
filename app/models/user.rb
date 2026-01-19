@@ -11,6 +11,6 @@ class User < ApplicationRecord
   end
 
   def admin?
-    email.eql? 'apasenko@ya.ru'
+    email.eql? 'test@ya.ru'
   end
 end

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update]
 
   def index
-    @users = User.all
+    @users = current_user.admin? ? User.all : User.none
   end
 
   def show; end

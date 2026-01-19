@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+# == Schema Information
+#
+# Table name: posts
+#
+#  id          :integer          not null, primary key
+#  title       :string
+#  body        :text
+#  creator_id  :integer          not null
+#  category_id :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_posts_on_category_id  (category_id)
+#  index_posts_on_creator_id   (creator_id)
+#
+
+class Post < ApplicationRecord
+  belongs_to :creator, class_name: 'User'
+  belongs_to :category
+
+  validates :title, :body, presence: true
+end

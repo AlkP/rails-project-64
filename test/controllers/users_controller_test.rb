@@ -7,6 +7,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should not get index' do
     get users_path
+
     assert_response :found
   end
 
@@ -23,12 +24,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get users_path
 
     assert_response :success
-    assert response.body.include?('test@ya.ru')
-    assert response.body.include?('testN@ya.ru')
+    assert_includes response.body, 'test@ya.ru'
+    assert_includes response.body, 'testN@ya.ru'
   end
 
   test 'should not get show' do
-    get user_path(users(:user).id)
+    get user_path(users(:user))
 
     assert_response :found
     assert_redirected_to new_user_session_path
@@ -36,9 +37,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should get show' do
     sign_in users(:admin)
-    get user_path(users(:user).id)
+    get user_path(users(:user))
 
     assert_response :success
-    assert response.body.include?('Профиль')
+    assert_includes response.body, 'Профиль'
   end
 end

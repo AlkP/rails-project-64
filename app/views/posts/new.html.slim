@@ -1,0 +1,29 @@
+= simple_form_for @post, html: { multipart: true } do |f|
+  - if f.error_notification
+    .alert.alert-danger role="alert"
+      = f.error_notification
+
+  = f.input :title,
+          label: 'Заголовок',
+          required: true,
+          input_html: { autofocus: true }
+
+  = f.association :category,
+          collection: Category.order(name: :asc),
+          label_method: :name,
+          value_method: :id,
+          prompt: 'Выберите категорию',
+          label: 'Категория',
+          include_blank: false
+
+  = f.input :body,
+          label: 'Текст поста',
+          as: :text,
+          input_html: { rows: 10 }
+
+  .form-group.mt-4
+    = f.button :submit, 'Опубликовать', class: 'btn btn-primary btn-lg'
+    = link_to 'Отмена', posts_path, class: 'btn btn-secondary btn-lg ms-2'
+
+.mt-3
+  = link_to '← Вернуться к списку постов', posts_path, class: 'text-decoration-none'

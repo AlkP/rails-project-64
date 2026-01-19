@@ -23,6 +23,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :posts, foreign_key: :creator_id, dependent: :nullify, inverse_of: :creator
+
   def greeting
     "Привет, #{name? ? name : email}"
   end

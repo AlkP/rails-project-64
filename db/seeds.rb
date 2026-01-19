@@ -3,9 +3,26 @@
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+
+%w[test@ya.ru testN@ya.ru].each do |email|
+  User.find_or_create_by!(email: email) do |user|
+    user.name = 'Test User'
+    user.password = 'password'
+  end
+end
+
+%w[Фильмы Книги].each do |name|
+  Category.find_or_create_by!(name: name)
+end
+
+[
+  [1, 1, 'Новый и свежий пост', 'Выполнение проекта сопряжено с большим количеством сложностей и некоторые шаги даются тяжело. Испытывать трудности нормально, но не стоит зависать над решением часами. Объяснить задачу другими словами, дать подсказку или указать явно на ошибку может ваш наставник. Обратитесь в чат своей группы или к персональному наставнику, если уже больше часа не можете продвинуться в решении В процессе выполнения опирайтесь на наши [советы по прохождению проектов](https://help.hexlet.io/project-work/sovety-po-prohozhdeniyu-proektov), особенно если занимаетесь без наставника.'],
+  [2, 2, 'Самый новый и свежий пост', 'Если вы учитесь самостоятельно или с персональным наставником, проходить проект можно в удобном для себя темпе. Независимо от формата обучения, лучше поддерживать постоянный прогресс и тратить на выполнение проекта (без учёта ревью) до 2-4 недель. Если вы учитесь в группе, этот срок поможет уложиться в сроки большинства учебных программ']
+].each do |category_id, creator_id, title, body|
+  Post.find_or_create_by!(title: title) do |post|
+    post.body = body
+    post.category_id = category_id
+    post.creator_id = creator_id
+  end
+end
+

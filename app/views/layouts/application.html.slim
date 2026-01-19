@@ -29,6 +29,14 @@ html
   body
     .container
       .row.justify-content-start
-        .col-4
-        .col-4
-          = yield
+        .col-2
+        .col-8
+          .row
+            - %i[notice alert].each do |type|
+              - if flash[type]
+                - alert_class = "alert-#{type == :notice ? 'success' : 'danger'} alert-dismissible fade show"
+                .alert class=alert_class role='alert'
+                  = flash[type]
+                  button.btn-close type="button" data-bs-dismiss='alert'
+          .row
+            = yield

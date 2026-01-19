@@ -1,0 +1,36 @@
+h1.mb-4
+  = @post.title
+
+p.text-muted
+  | Опубликовано:
+  = @post.created_at.strftime('%d.%m.%Y в %H:%M')
+
+.card.mb-4
+  .card-body
+    p
+      = @post.body
+
+.d-flex.justify-content-between.align-items-center
+  .btn-group
+    = link_to 'Назад', posts_path, class: 'btn btn-outline-secondary'
+    = link_to 'Удалить', @post, method: :delete, class: 'btn btn-danger disabled'
+
+    / // Комментарии (если есть)
+/ - if @post.comments.any?
+/   hr.my-4
+/   h3 Комментарии
+/   - @post.comments.each do |comment|
+/     .card.mb-2
+/       .card-body
+/         p.font-weight-bold= comment.author_name
+/         p= comment.body
+/         small.text-muted= comment.created_at.strftime('%d.%m.%Y %H:%M')
+/
+/
+/ // Форма для добавления комментария (если нужно)
+/ - if user_signed_in?
+/ hr.my-4
+/ h3 Добавить комментарий
+/ = simple_form_for([@post, @post.comments.build]) do |f|
+/   = f.input :body, as: :text, label: false, placeholder: 'Ваш комментарий...'
+/   = f.button :submit, 'Отправить', class: 'btn btn-success'

@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'dashboards#index'
+  root 'posts#index'
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   devise_for :users
   resources :users
+  resources :posts, only: %i[index show new create destroy]
 end

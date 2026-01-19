@@ -14,6 +14,10 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
           li.nav-item
             a.nav-link[href="#{users_path}"]
               | Пользователи
+        - if current_user
+          li.nav-item
+            a.nav-link[href="#{new_post_path}"]
+              | Новый пост
         li.nav-item
           a.nav-link.disabled
             | на будущее
@@ -25,7 +29,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
           ul.dropdown-menu.dropdown-menu-end[aria-labelledby='userDropdown']
             - if user_signed_in?
               li
-                a.dropdown-item[href='#']
+                a.dropdown-item[href="#{user_path(current_user.id)}"]
                   | Профиль
               li
                 hr.dropdown-divider

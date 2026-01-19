@@ -25,6 +25,12 @@ make setup
 make start
 ```
 
+## Linter
+
+```bash
+make lint
+```
+
 ---
 
 ## error messages

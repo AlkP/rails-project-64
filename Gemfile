@@ -37,9 +37,6 @@ group :development, :test do
   gem 'bundler-audit', require: false
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
   gem 'dotenv-rails'
-  gem 'faker'
-  gem 'minitest', '~> 5.18'
-  gem 'minitest-power_assert', '~> 0.3.1'
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'

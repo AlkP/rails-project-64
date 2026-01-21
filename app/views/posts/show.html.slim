@@ -1,9 +1,16 @@
-h1.mb-4
-  = @post.title
+.col-2
+  - if current_user&.liked?(@post)
+    = button_to '♥', post_post_likes_path(@post), method: :delete, class: 'liked btn btn-link'
+  - elsif current_user
+    = button_to '♡', post_post_likes_path(@post), method: :post, class: 'not-liked btn btn-link'
 
-p.text-muted
-  | Опубликовано:
-  = @post.created_at.strftime('%d.%m.%Y в %H:%M')
+.col-10
+  p.text-muted
+    h3.mb-4
+      = @post.title
+
+| Опубликовано:
+= @post.created_at.strftime('%d.%m.%Y в %H:%M')
 
 .card.mb-4
   .card-body

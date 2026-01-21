@@ -33,4 +33,8 @@ class User < ApplicationRecord
   def admin?
     email.eql? 'test@ya.ru'
   end
+
+  def liked?(post)
+    PostLike.exists?(user_id: id, post_id: post.id)
+  end
 end

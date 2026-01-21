@@ -8,5 +8,10 @@ Rails.application.routes.draw do
   resources :users
   resources :posts, only: %i[index show new create destroy] do
     resources :post_comments, controller: :comments, only: %i[create index]
+    resources :post_likes, controller: :likes, only: %i[create] do
+      collection do
+        delete :destroy, action: :destroy
+      end
+    end
   end
 end

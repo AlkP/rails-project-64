@@ -15,5 +15,5 @@
 #  index_users_on_email                  (email)
 #  index_users_on_reset_password_token   (reset_password_token)
 
-admin: { email: 'test@ya.ru' }
-user: { email: 'testN@ya.ru' }
+admin: { email: 'test@ya.ru', encrypted_password: <%= BCrypt::Password.create('password', cost: 10).to_s %> }
+user: { email: 'testN@ya.ru', encrypted_password: <%= BCrypt::Password.create('password', cost: 10).to_s %> }

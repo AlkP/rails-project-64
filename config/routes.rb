@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users
-  resources :posts, only: %i[index show new create destroy]
+  resources :posts, only: %i[index show new create destroy] do
+    resources :post_comments, controller: :comments, only: %i[create index]
+  end
 end

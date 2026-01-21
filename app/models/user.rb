@@ -24,6 +24,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, foreign_key: :creator_id, dependent: :nullify, inverse_of: :creator
+  has_many :post_comments, dependent: :nullify, inverse_of: :user
 
   def greeting
     "Привет, #{name? ? name : email}"

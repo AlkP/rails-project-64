@@ -461,6 +461,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  bcrypt
   bootsnap
   brakeman
   bundler-audit

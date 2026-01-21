@@ -4,3 +4,8 @@ en:
     create:
       create:
         notice: 'Пост успешно создан!'
+  comments:
+    create:
+      create:
+        notice: 'Комментарий успешно добавлен'
+        alert: 'Тело комментария не может быть пустым'

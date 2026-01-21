@@ -12,22 +12,17 @@ render-start:
 
 start:
 	rm -rf tmp/pids/server.pid || true
-	bin/rails s
-
-setup: install
-	bin/rails assets:precompile
-	make db-prepare
-
-install:
 	bin/setup
+
+setup:
+	bundle install
+	bin/rails assets:precompile
+	bundle exec rails db:migrate
+	make db-prepare
 
 db-prepare:
 	bin/rails db:reset
 	bin/rails db:fixtures:load
-
-seed:
-	bin/rails db:prepare
-	bin/rails db:seed
 
 check: test lint
 

@@ -1,0 +1,36 @@
+# == Schema Information
+#
+# Table name: post_comments
+#
+#  id         :integer          not null, primary key
+#  content    :string
+#  user_id    :integer          not null
+#  post_id    :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_post_comments_on_post_id  (post_id)
+#  index_post_comments_on_user_id  (user_id)
+#
+
+one:
+  content: Первый комментарий
+  user: user
+  post: one
+
+with_comments:
+  content: Это комментарий с комментариями
+  user: admin
+  post: one
+
+nested:
+  content: Комментарий на комментарий
+  user: user
+  post: one
+
+deep_nested:
+  content: Глубокий комментарий
+  user: admin
+  post: one

@@ -6,6 +6,7 @@
 #
 #  id         :integer          not null, primary key
 #  content    :string
+#  parent_id  :integer
 #  user_id    :integer          not null
 #  post_id    :integer          not null
 #  created_at :datetime         not null

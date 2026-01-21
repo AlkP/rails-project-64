@@ -4,6 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  content    :string
+#  parent_id  :integer
 #  user_id    :integer          not null
 #  post_id    :integer          not null
 #  created_at :datetime         not null
@@ -27,10 +28,12 @@ with_comments:
 
 nested:
   content: Комментарий на комментарий
+  parent_id: <%= ActiveRecord::FixtureSet.identify(:with_comments) %>
   user: user
   post: one
 
 deep_nested:
   content: Глубокий комментарий
+  parent_id: <%= ActiveRecord::FixtureSet.identify(:nested) %>
   user: admin
   post: one

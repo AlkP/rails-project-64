@@ -1,0 +1,20 @@
+.comment style="margin-left: #{comment.depth * 20}px;"
+  p style="background-color: #c2bfbf;" = comment.content
+  small
+    | #{comment.user.email}
+    |  ( #{comment.created_at.strftime('%d.%m.%Y %H:%M')} )
+  = link_to 'Ответить', '#', data: { action: 'open-reply-form', comment_id: comment.id },
+          class: 'btn btn-sm btn-outline-primary'
+  .my-4
+
+  // Форма для ответа (скрыта по умолчанию)
+  .reply-form style='display: none;' data-comment-id="#{comment.id}"
+    = form_with model: [@post, PostComment.new], url: post_post_comments_path(@post), local: true,
+            class: 'mt-2' do |form|
+      = form.hidden_field :parent_id, value: comment.id
+      = form.text_area :content, placeholder: 'Ваш ответ...', class: 'form-control'
+      = form.submit 'Отправить ответ', class: 'btn btn-primary btn-sm mt-1'
+
+// Рекурсивное отображение ответов
+- if comment.childs
+  = render partial: 'posts/comment', collection: comment.childs, as: :comment

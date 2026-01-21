@@ -14,29 +14,32 @@ p.text-muted
   .btn-group
     = link_to 'Назад', posts_path, class: 'btn btn-outline-secondary'
     = link_to 'Удалить', @post, method: :delete, class: 'btn btn-danger disabled'
+.my-4
 
-// Комментарии (если есть)
-- if @post.comments.any?
-  hr.my-4
-  h3 Комментарии
-  - if @comment&.errors&.any?
-    - @comment.errors.full_messages.each do |message|
-      .alert.alert-danger role="alert"
-        = message
-  - @post.comments.each do |comment|
-    .card.mb-
-      .card-body
-        p.font-weight-bold
-          = comment.user.email
-        p
-          = comment.content
-        small.text-muted
-          = comment.created_at.strftime('%d.%m.%Y %H:%M')
+= render partial: 'posts/comment', collection: @post.comments.by_parent_id(nil), as: :comment
 
-// Форма для добавления комментария (если нужно)
-- if user_signed_in?
-  hr.my-4
-  h3 Добавить комментарий
-  = simple_form_for([@post, @post.comments.build]) do |f|
-    = f.input :content, as: :text, label: false, placeholder: 'Ваш комментарий...'
-    = f.button :submit, 'Отправить', class: 'btn btn-success'
+/ // Комментарии (если есть)
+/ - if @post.comments.any?
+/   hr.my-4
+/   h3 Комментарии
+/   - if @comment&.errors&.any?
+/     - @comment.errors.full_messages.each do |message|
+/       .alert.alert-danger role="alert"
+/         = message
+/   - @post.comments.each do |comment|
+/     .card.mb-
+/       .card-body
+/         p.font-weight-bold
+/           = comment.user.email
+/         p
+/           = comment.content
+/         small.text-muted
+/           = comment.created_at.strftime('%d.%m.%Y %H:%M')
+/
+/ // Форма для добавления комментария (если нужно)
+/ - if user_signed_in?
+/   hr.my-4
+/   h3 Добавить комментарий
+/   = simple_form_for([@post, @post.comments.build]) do |f|
+/     = f.input :content, as: :text, label: false, placeholder: 'Ваш комментарий...'
+/     = f.button :submit, 'Отправить', class: 'btn btn-success'

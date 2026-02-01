@@ -4,10 +4,67 @@ exclude:
   - node_modules/*
 
 linters:
-  LineLength:
-    enabled: true
-    max: 120
   TrailingWhitespace:
     enabled: true
   TrailingBlankLines:
     enabled: true
+
+  # Проверяет, что атрибуты в тегах отсортированы по алфавиту
+  AttributeOrder:
+    enabled: true
+
+  # Запрещает пустые блоки (например, div без содержимого)
+  EmptyLineInBlock:
+    enabled: true
+
+  # Проверяет длину строки (по умолчанию — 80 символов)
+  LineLength:
+    enabled: true
+    max: 120
+    allow_uri: true  # не обрезать длинные URL
+
+  # Запрещает использование магических строк в тегах
+  ImplicitDiv:
+    enabled: true
+    allowed_classes: []  # можно добавить разрешённые, например: ['icon', 'btn']
+
+  # Проверяет отступы (обязательно 2 пробела)
+  Indentation:
+    enabled: true
+    width: 2
+
+  # Запрещает использование `id` и `class` в виде строк, если можно использовать # и .
+  TagDuplication:
+    enabled: true
+
+  # Проверяет, что нет дублирования атрибутов в одном теге
+  DuplicatedAttribute:
+    enabled: true
+
+  # Запрещает использование Ruby-кода в шаблонах (или ограничивает)
+  RuboCop:
+    enabled: true
+    include:
+      - '**/*.slim'
+
+  # Проверяет наличие alt у изображений
+  ImageAlt:
+    enabled: true
+
+  # Запрещает использовать слишком вложенные элементы
+  NestedTag:
+    enabled: true
+    max: 4  # максимум 4 уровня вложенности
+
+  # Проверяет, что используются семантические теги (например, main, section)
+  SemanticTag:
+    enabled: false  # можно включить, если важно
+
+  # Запрещает комментарии HTML в Slim
+  Comment:
+    enabled: true
+
+  # Проверяет, что используются правильные doctype
+  Doctype:
+    enabled: true
+    style: html5

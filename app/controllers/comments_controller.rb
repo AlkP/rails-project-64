@@ -21,6 +21,6 @@ class CommentsController < ApplicationController
   end
 
   def permitted_params
-    params.require(:post_comment).permit(:content)
+    params.expect(post_comment: [:content])
   end
 end

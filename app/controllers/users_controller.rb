@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def edit; end
 
   def create
-    @user = User.create(params.require(:user).permit(:name, :email, :password, :password_confirmation))
+    @user = User.create(create_params)
   end
 
   def update; end
@@ -28,5 +28,9 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def create_params
+    params.expect(user: %i[name email password password_confirmation])
   end
 end

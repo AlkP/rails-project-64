@@ -6,18 +6,21 @@ class CommentsController < ApplicationController
   def create
     @comment = PostComment.build(create_params)
 
-    if @comment.save
+    if @comment.valid?
+      @comment.save
       redirect_to post_path(@comment.post), notice: t('.create.notice')
-    else
+    elsif @comment.post
       @post = @comment.post
-      render 'posts/show', status: :unprocessable_content, notice: t('.create.notice')
+      redirect_to post_path(@comment.post), alert: t('.create.alert')
+    else
+      redirect_to root_path, alert: t('.create.warning')
     end
   end
 
   private
 
   def create_params
-    permitted_params.merge(post_id: params[:post_id]).merge(user_id: current_user.id)
+    permitted_params.merge(post_id: params[:post_id]).merge(user_id: current_user&.id)
   end
 
   def permitted_params

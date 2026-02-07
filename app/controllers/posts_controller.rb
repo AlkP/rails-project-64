@@ -17,7 +17,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.build(create_params)
 
-    if @post.save
+    if @post.valid?
+      @post.save
       redirect_to @post, notice: t('.create.notice')
     else
       render :new, status: :unprocessable_content
@@ -25,17 +26,19 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
+    @post&.destroy
+
+    redirect_to root_path, notice: t('.destroy.notice')
   end
 
   private
 
   def find_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
   end
 
   def create_params
-    permitted_params.merge(creator_id: current_user.id)
+    permitted_params.merge(creator_id: current_user&.id)
   end
 
   def permitted_params

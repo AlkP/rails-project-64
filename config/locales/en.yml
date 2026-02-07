@@ -4,8 +4,12 @@ en:
     create:
       create:
         notice: 'Пост успешно создан!'
+    destroy:
+      destroy:
+        notice: 'Пост успешно удален!'
   comments:
     create:
       create:
         notice: 'Комментарий успешно добавлен'
+        warning: 'Что-то пошло не так'
         alert: 'Тело комментария не может быть пустым'

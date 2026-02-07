@@ -11,14 +11,14 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should get create' do
     sign_in users(:user)
-    post post_post_likes_path(@post)
+    post post_likes_path(post_id: @post.id)
 
     assert_response :found
   end
 
   test 'should get destroy' do
-    sign_in users(:user)
-    delete post_post_likes_path(@post)
+    sign_in users(:admin)
+    delete post_like_path(@post)
 
     assert_response :found
   end

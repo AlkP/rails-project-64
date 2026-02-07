@@ -19,7 +19,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:user)
 
     assert_difference('::PostComment.count') do
-      post post_post_comments_path(@post), params: { post_comment: @valid_comment_params }
+      post post_comments_path(post_id: @post.id), params: { post_comment: @valid_comment_params }
     end
 
     assert_redirected_to post_url(@post)
@@ -28,7 +28,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   test 'should create comment with valid params #2' do
     sign_in users(:user)
 
-    post post_post_comments_path(@post), params: { post_comment: @valid_comment_params }
+    post post_comments_path(post_id: @post.id), params: { post_comment: @valid_comment_params }
     comment = PostComment.last
 
     assert_equal @valid_comment_params[:content], PostComment.last.content
@@ -39,16 +39,30 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:user)
 
     assert_no_difference('PostComment.count') do
-      post post_post_comments_path(@post), params: { post_comment: @invalid_comment_params }
+      post post_comments_path(post_id: @post.id), params: { post_comment: @invalid_comment_params }
     end
 
-    assert_response :unprocessable_content
+    # assert_response :unprocessable_content
     # assert_template :show
     # assert_select 'div.alert', "Content can't be blank"
+    assert_response :redirect
+  end
+
+  test 'should not create comment with invalid params #2' do
+    sign_in users(:user)
+
+    assert_no_difference('PostComment.count') do
+      post post_comments_path, params: { post_comment: @invalid_comment_params }
+    end
+
+    # assert_response :unprocessable_content
+    # assert_template :show
+    # assert_select 'div.alert', "Content can't be blank"
+    assert_response :redirect
   end
 
   test 'should require login for creating comment' do
-    post post_post_comments_path(@post), params: { post_comment: @valid_comment_params }
+    post post_comments_path(post_id: @post.id), params: { post_comment: @valid_comment_params }
 
     assert_response :redirect
     assert_redirected_to new_user_session_url

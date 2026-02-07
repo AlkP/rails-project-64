@@ -17,7 +17,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.build(create_params)
 
-    if @post.save
+    if @post.valid?
+      @post.save
       redirect_to @post, notice: t('.create.notice')
     else
       render :new, status: :unprocessable_content

@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'ancestry'
 gem 'bcrypt'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'

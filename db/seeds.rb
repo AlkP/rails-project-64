@@ -23,4 +23,3 @@ end
     post.creator_id = creator_id
   end
 end
-

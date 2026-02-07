@@ -9,7 +9,7 @@
 
   // Форма для ответа (скрыта по умолчанию)
   .reply-form style='display: none;' data-comment-id="#{comment.id}"
-    = form_with model: [@post, PostComment.new], url: post_post_comments_path(@post), local: true,
+    = form_with model: [@post, PostComment.new], url: post_comments_path(@post), local: true,
             class: 'mt-2' do |form|
       = form.hidden_field :parent_id, value: comment.id
       = form.text_area :content, placeholder: 'Ваш ответ...', class: 'form-control'

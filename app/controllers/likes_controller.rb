@@ -15,7 +15,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    PostLike.find_by(id: like_id)&.delete
+    post_like&.delete
 
     redirect_to post_path(@post)
   end
@@ -25,13 +25,12 @@ class LikesController < ApplicationController
   end
 
   def find_post
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find_by(id: params[:post_id])
   end
 
-  def like_id
+  def post_like
     return nil unless @post
-    return nil unless (like = @post.likes.find_by(user: current_user))
 
-    like.id
+    @post.likes.where(user: current_user).find_by(id: params[:id])
   end
 end

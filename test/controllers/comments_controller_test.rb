@@ -31,8 +31,8 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     post post_comments_path(@post), params: { post_comment: @valid_comment_params }
     comment = PostComment.last
 
-    assert_equal @valid_comment_params[:content], PostComment.last.content
-    assert_equal @post.id, comment.post_id
+    assert { @valid_comment_params[:content] == PostComment.last.content }
+    assert { @post.id == comment.post_id }
   end
 
   test 'should not create comment with invalid params' do
@@ -42,10 +42,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
       post post_comments_path(@post), params: { post_comment: @invalid_comment_params }
     end
 
-    # assert_response :unprocessable_content
-    # assert_template :show
-    # assert_select 'div.alert', "Content can't be blank"
-    assert_response :redirect
+    assert { response.redirect? }
   end
 
   test 'should not create comment with invalid params #2' do
@@ -55,16 +52,13 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
       post post_comments_path(@post), params: { post_comment: @invalid_comment_params }
     end
 
-    # assert_response :unprocessable_content
-    # assert_template :show
-    # assert_select 'div.alert', "Content can't be blank"
-    assert_response :redirect
+    assert { response.redirect? }
   end
 
   test 'should require login for creating comment' do
     post post_comments_path(@post), params: { post_comment: @valid_comment_params }
 
-    assert_response :redirect
+    assert { response.redirect? }
     assert_redirected_to new_user_session_url
   end
 end

@@ -6,9 +6,18 @@
 # and recreated between test runs. Don't rely on the data there!
 
 Rails.application.configure do
+  # Отключаем Rails Asset Pipeline
   config.assets.compile = false
   config.assets.digest = false
   config.assets.debug = false
+
+  # Отключаем сборку через jsbundling/cssbundling
+  config.build_js_command = nil
+  config.build_css_command = nil
+  config.check_precompiled_assets = false
+
+  # Дополнительно: отключаем проверку наличия ассетов
+  config.precompiled_assets_enabled = false
 
   # Settings specified here will take precedence over those in config/application.rb.
 

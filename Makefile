@@ -12,7 +12,7 @@ render-start:
 
 start:
 	rm -rf tmp/pids/server.pid || true
-	bin/setup
+	bin/dev
 
 setup:
 	bundle install
@@ -26,7 +26,19 @@ db-prepare:
 
 check: test lint
 
+clean-assets:
+	rm -rf tmp/cache/assets/* public/assets/* app/assets/builds/*
+
 test:
+	make clean-assets
+	RAILS_ENV=test \
+	ASSETS_PRECOMPILE=false \
+	SKIP_ASSET_COMPILATION=true \
+	BUILD_JS_COMMAND=: \
+	BUILD_CSS_COMMAND=: \
+	NODE_ENV=test \
+	DISABLE_JS_BUILD=true \
+	DISABLE_CSS_BUILD=true \
 	bin/rails test
 
 lint:

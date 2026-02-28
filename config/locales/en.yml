@@ -1,15 +1,15 @@
 en:
-  hello: 'Hello world'
+  hello: Hello world
   posts:
     create:
       create:
-        notice: 'Пост успешно создан!'
+        notice: Post successfully created
     destroy:
       destroy:
-        notice: 'Пост успешно удален!'
+        notice: Post successfully deleted
   comments:
     create:
       create:
-        notice: 'Комментарий успешно добавлен'
-        warning: 'Что-то пошло не так'
-        alert: 'Тело комментария не может быть пустым'
+        notice: Comment successfully added
+        warning: Something went wrong
+        alert: Comment body cannot be empty

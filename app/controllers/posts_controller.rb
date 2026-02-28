@@ -2,13 +2,14 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :find_post, only: %i[show destroy]
 
   def index
     @posts = Post.order(created_at: :desc)
   end
 
-  def show; end
+  def show
+    @post = Post.find_by(id: params[:id])
+  end
 
   def new
     @post = Post.new
@@ -26,16 +27,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find_by(id: params[:id])
     @post&.destroy
 
     redirect_to root_path, notice: t('.destroy.notice')
   end
 
   private
-
-  def find_post
-    @post = Post.find_by(id: params[:id])
-  end
 
   def create_params
     permitted_params.merge(creator_id: current_user&.id)

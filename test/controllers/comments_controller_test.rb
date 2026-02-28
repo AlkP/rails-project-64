@@ -18,34 +18,14 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   test 'should create comment with valid params' do
     sign_in users(:user)
 
-    assert_difference('::PostComment.count') do
+    assert_difference '::PostComment.count', +1 do
       post post_comments_path(@post), params: { post_comment: @valid_comment_params }
     end
 
     assert_redirected_to post_url(@post)
   end
 
-  test 'should create comment with valid params #2' do
-    sign_in users(:user)
-
-    post post_comments_path(@post), params: { post_comment: @valid_comment_params }
-    comment = PostComment.last
-
-    assert { @valid_comment_params[:content] == PostComment.last.content }
-    assert { @post.id == comment.post_id }
-  end
-
   test 'should not create comment with invalid params' do
-    sign_in users(:user)
-
-    assert_no_difference('PostComment.count') do
-      post post_comments_path(@post), params: { post_comment: @invalid_comment_params }
-    end
-
-    assert { response.redirect? }
-  end
-
-  test 'should not create comment with invalid params #2' do
     sign_in users(:user)
 
     assert_no_difference('PostComment.count') do

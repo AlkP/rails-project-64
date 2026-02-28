@@ -1,13 +1,5 @@
 .table-responsive
   table.table.table-striped.table-hover
-    / thead.table-dark
-    /   tr
-    /     th
-    /       | Заголовок
-    /     th
-    /       | Дата создания
-    /     th.text-end
-    /       | Действия
     tbody
       - @posts.each do |post|
         tr
@@ -18,5 +10,3 @@
           td
             = post.created_at.strftime('%d.%m.%Y %H:%M')
           td.text-end
-            / = link_to 'Читать', post, class: 'btn btn-sm btn-outline-primary me-1'
-            = link_to 'Удалить', post, method: :delete, class: 'btn btn-sm btn-outline-danger disabled'

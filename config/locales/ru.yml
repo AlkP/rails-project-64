@@ -1,0 +1,35 @@
+ru:
+  hello: Здрасте
+  main_nav:
+    main: Главная
+    users: Пользователи
+    new_post:  Новый пост
+    profile: Профиль
+    exit: Выйти
+    login: Войти
+    register: Зарегестрироваться
+    user_menu: Пользовательское меню
+  posts:
+    create:
+      create:
+        notice: Пост успешно создан
+    destroy:
+      destroy:
+        notice: Пост успешно удален
+  comments:
+    create:
+      create:
+        notice: Комментарий успешно добавлен
+        warning: Что-то пошло не так
+        alert: Тело комментария не может быть пустым
+  devise:
+    failure:
+      user:
+        not_found_in_database: Пользователя не существует
+  views:
+    users:
+      sessions:
+        new:
+          submit: Войти
+          email_description: Мы никогда не передадим ваш адрес электронной почты третьим лицам
+          remember_me: Запомни меня

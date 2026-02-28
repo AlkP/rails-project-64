@@ -4,18 +4,17 @@ h2
   .form-group
     = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'email', class: 'form-control'
     .small#emailHelp.form-text.text-muted
-      | Мы никогда не передадим ваш адрес электронной почты третьим лицам.
+      = ::I18n.t('views.users.sessions.new.email_description')
   br
   .form-group
     = f.password_field :password, autocomplete: 'current-password', placeholder: 'Password', class: 'form-control'
   br
 
   .actions
-    = f.submit 'Войти', class: 'btn btn-primary form-control'
+    = f.submit ::I18n.t('views.users.sessions.new.submit'), class: 'btn btn-primary form-control'
   br
   br
   - if devise_mapping.rememberable?
     .field
       = f.check_box :remember_me
-      = f.label :remember_me
-/ = render 'users/shared/links'
+      = f.label ::I18n.t('views.users.sessions.new.remember_me')

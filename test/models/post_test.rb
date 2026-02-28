@@ -26,14 +26,14 @@ class PostTest < ActiveSupport::TestCase
     post = Post.new(body: 'Some body', creator: users(:user), category: Category.all.sample)
 
     assert_not post.save, 'Saved post without title'
-    assert_includes post.errors[:title], 'can\'t be blank'
+    assert_includes post.errors[:title], I18n.t('errors.messages.blank')
   end
 
   test 'should not save post without body' do
     post = Post.new(title: 'Some title', creator: users(:user), category: Category.all.sample)
 
     assert_not post.save, 'Saved post without body'
-    assert_includes post.errors[:body], 'can\'t be blank'
+    assert_includes post.errors[:body], I18n.t('errors.messages.blank')
   end
 
   # 2. Проверка ассоциаций
@@ -81,13 +81,13 @@ class PostTest < ActiveSupport::TestCase
     post = Post.new(title: 'Title', body: 'Body', category: Category.all.sample)
 
     assert_not post.valid?
-    assert_includes post.errors[:creator], 'must exist'
+    assert_includes post.errors[:creator], I18n.t('errors.attributes.creator.required')
   end
 
   test 'should require category' do
     post = Post.new(title: 'Title', body: 'Body', creator: users(:user))
 
     assert_not post.valid?
-    assert_includes post.errors[:category], 'must exist'
+    assert_includes post.errors[:category], I18n.t('errors.attributes.category.required')
   end
 end

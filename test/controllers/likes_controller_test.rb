@@ -16,23 +16,19 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
       post post_likes_path(@post)
     end
 
-    assert_response :found
-
     like = PostLike.find_by(user: users(:user), post: @post)
     assert { like.present? && like.user == users(:user) && like.post == @post }
+
+    assert_response :found
   end
 
   test 'should get destroy' do
     user = users(:user)
     sign_in user
     like = PostLike.create!(user: user, post: @post)
-
-    assert_difference 'PostLike.count', -1 do
-      delete post_like_path(@post, like)
-    end
-
-    assert_response :found
+    delete post_like_path(@post, like)
 
     assert { PostLike.find_by(user: user, post: @post).nil? }
+    assert_response :found
   end
 end

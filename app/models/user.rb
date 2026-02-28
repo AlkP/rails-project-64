@@ -26,10 +26,6 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: :creator_id, dependent: :nullify, inverse_of: :creator
   has_many :post_comments, dependent: :nullify, inverse_of: :user
 
-  def greeting
-    "Привет, #{name? ? name : email}"
-  end
-
   def admin?
     email.eql? 'test@ya.ru'
   end

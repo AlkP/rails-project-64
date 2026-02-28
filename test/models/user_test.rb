@@ -30,13 +30,13 @@ class UserTest < ActiveSupport::TestCase
     user = User.new(email: nil, password: 'password', name: 'Name')
 
     assert_not user.valid?
-    assert_includes user.errors[:email], "can't be blank"
+    assert_includes user.errors[:email], I18n.t('errors.messages.blank')
   end
 
   test 'email should be email' do
     user = User.new(email: 'testNew_ya.com', password: 'password', name: 'Name')
 
     assert_not user.valid?
-    assert_includes user.errors[:email], 'is invalid'
+    assert_includes user.errors[:email], I18n.t('activerecord.errors.models.user.attributes.email.invalid')
   end
 end
